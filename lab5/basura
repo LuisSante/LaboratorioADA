@@ -1,0 +1,155 @@
+//Luis Felipe Sante Taipe
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<chrono>
+#include<algorithm>
+
+using namespace std;
+
+ofstream archivo_salida("I_q_m__semi.txt");
+
+void insertion_sort(int Aux[], int n){
+    int i, key, j;
+
+    for (i = 1; i < n; i++){
+        key = Aux[i];
+        j = i - 1;
+
+        while (j >= 0 && Aux[j] > key){
+            Aux[j + 1] = Aux[j];
+            j = j - 1;
+        }
+        Aux[j + 1] = key;
+    }
+}
+
+void times(int B[], int n){
+    int Aux[n];
+    int Aux2[n];
+    int i = 0;
+
+    while( i != n){
+        Aux[i] = B[i];//copiamos los valores a 2 vectores auxiliares uno por uno
+        Aux2[i] = B[i];
+
+        //tiempos 
+        auto start = chrono::steady_clock::now();
+        insertion_sort(Aux , i+1);
+        auto end = chrono::steady_clock::now();
+        double time = double(chrono::duration_cast <chrono::microseconds> (end - start).count());
+        archivo_salida<<time<<endl;
+    
+        //entra un array ordenado
+        for(int j = 0; j <= i ; j++){
+            Aux[j] = Aux2[j];//ayuda a volver a desordenar el arreglo
+        }
+        i++;
+    }
+}  
+
+void print(int B[], int n){
+    for(int i=0 ; i<n ; i++){
+        cout<<B[i]<<" ";
+    }
+}
+
+int main(){
+    int _size;
+    cout<<"tamanio del arreglo: ";cin>> _size;
+
+    ifstream archivo_entrada("semiordenado.txt");//accede a los archivos que desee
+    string linea;
+    string palabra;
+    int p=0;
+    int B[_size];
+
+    //nos permite acceder a cada linea del archivo plano
+    while(getline(archivo_entrada , linea)){
+        palabra = linea;
+        p++;
+        if(p>=1){
+            int n1 = 0 , entero = 0;
+            int position = 0;
+            for(int i = 0 ; palabra[i] != '\0' ; i++){
+                if(palabra[i] == ' '){
+                    entero = atoi((palabra.substr(n1,i)).c_str());
+                    n1 = i+1;
+                    B[position] = entero;
+                    position++;
+                }
+            }   
+
+        }
+    }
+    times(B,_size);
+}
+
+
+
+
+
+//Luis Felipe Sante Taipe
+//#ifndef MERGE_H
+//#define MERGE_H
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<chrono>
+#include<math.h>
+
+using namespace std;
+
+void intercala(int A[] , int p , int q , int r){
+    int B[r-p];
+    for(int i = p ; i<q ; i++){
+        B[i] = A[i]; 
+    }
+
+    for(int j = q+1; j < r ; j++){
+        B[r+q+1-j] = A[j];
+    }
+
+    int i = p;
+    int j = r;
+
+    for(int k=p ; k<r ; k++){
+        if(B[i] <= B[j]){
+            A[k] = B[i];
+            i++;
+        }
+
+        else{
+            A[k] = B[j];
+            j--;
+        }
+    }
+}
+
+void merge_sort(int A[] , int p , int r){
+    if(p<r){
+        int q;
+        q = floor((p+r)/2);
+        merge_sort(A , p , q-1);
+        merge_sort(A , q+1 , r);
+        intercala(A , p , q , r);
+    }
+}
+
+void print(int A[] , int n){
+    for(int i = 0 ; i < n ; i++){
+        cout<< A[i] << " ";
+    }
+}
+
+//#endif
+
+int main(){
+    int A[10] = {1,2,3,51,3,2,5,-2,4,2};
+    int p = 0;
+    int r = sizeof(A) / sizeof(A[0]);
+
+    merge_sort(A , p , r);
+    print(A , r);
+    return 0;
+}
