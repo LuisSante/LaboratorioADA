@@ -5,8 +5,7 @@ int matriz[14][14];
 int temp(int index);
 void square_index(int matriz[14][14]){
     for (int i = 0; i < 14; i++){
-        for (int j = 0; j < 14; j++)
-        {
+        for (int j = 0; j < 14; j++){
             matriz[i][j] = 0;
         }
     }

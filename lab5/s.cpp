@@ -1,5 +1,3 @@
-#ifndef GENERADOR_SEMI_SORT_H
-#define GENERADOR_SEMI_SORT_H
 #include<iostream>
 #include<ctime>
 #include<stdlib.h>
@@ -26,4 +24,16 @@ void array_semisort(int *A ,  int n_elem){
     }
 }
 
-#endif
+void print(int *A ,  int n_elem){
+    for(int i = 0; i < n_elem; i++){
+        cout<<A[i]<<" ";
+    }
+}
+
+int main(){
+
+    int n = 20;
+    int* arr = new int[n];
+    array_semisort(arr, n);
+    print(arr,n);
+}
