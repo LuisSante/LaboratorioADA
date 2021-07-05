@@ -9,7 +9,7 @@ int fibonacci(int n){
 }
 
 int main(){
-    int max = 2<<30;
+    int max = 2<<29;
     for(int i=1 ; i<=max ; i++){
         cout<<"F("<<i<<")"<<fibonacci(i)<<endl;
     }

@@ -15,6 +15,6 @@ int main(){
     int max = 2<<29;
     int mod = 2<<19;
     for(int i = 1; i<=max ; i++)
-        cout<<"F("<<i<<")"<<fibo_mod(i,mod)<<endl;
+        cout<<"F("<<i<<")%2^20-> "<<fibo_mod(i,mod)<<endl;
     return 0;
 }

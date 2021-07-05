@@ -4,8 +4,6 @@ def recur_fibo(n):
    else:
        return(recur_fibo(n-1) + recur_fibo(n-2))
 
-nterms = 50
-
-print("Fibonacci sequence:")
-for i in range(nterms):
-    print(recur_fibo(i))
+n = 2<<29
+for i in range(n+1):
+    print("fibo ",i,":",recur_fibo(i), end = "\n")

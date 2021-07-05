@@ -10,5 +10,6 @@ def fibo_iterative(n):
             fibo_act = fibo_prox
         return fibo_act
 
-for i in range(10):
-    print(fibo_iterative(i))
+n = 2<<29
+for i in range(n+1):
+    print("fibo ",i,":",fibo_iterative(i), end = "\n")

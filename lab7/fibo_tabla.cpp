@@ -12,7 +12,8 @@ double fibo_tabla(double n){
 }
 
 int main(){
-    int max = 32;
-    cout<<fibo_tabla(max)<<" ";
+    int max = 2<<29;
+    for(int i=1 ; i<=max ; i++)
+        cout<<"Fibo("<<i<<") "<<fibo_tabla(i)<<endl;
     return 0;
 }
