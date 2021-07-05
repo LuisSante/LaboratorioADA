@@ -34,8 +34,7 @@ void llenar(int *A , int n_elem){
 void array_semisort(int *A ,  int n_elem){
     llenar(A, n_elem);
     srand(time(0));
-    int tam = sizeof(A)/sizeof(A[0]);
-    int semi_sort = tam / 10;
+    int semi_sort = n_elem / 10;
     int lim = 0;
     while(lim < semi_sort){
         int left_side = rand() % (n_elem-1);

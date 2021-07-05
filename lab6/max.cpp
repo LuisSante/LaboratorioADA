@@ -18,11 +18,11 @@ int maxAlgorithm(int *arr, int n, int &cont){
 
 int main(){
     
-    int _size = (2<<20);
+    int _size = (2<<19);
     int* arr = new int [_size];
     int vectores = 200;
 
-    ofstream output{"max.txt", ios::out};
+    ofstream salida{"max.txt", ios::out};
 
     for(int exp = 8; exp <= 20; exp++){
         int size_ = (2<<exp-1);
@@ -37,9 +37,8 @@ int main(){
         }
         promedio = float(promedio/200);
 
-        output << size_ << "\t" << promedio << "\t" << log(size_) << endl;
+        salida << size_ << "\t" << promedio << "\t" << log(size_) << endl;
     }
-    output.close();
     return 0;
 
     return 0;
