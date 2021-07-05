@@ -1,35 +1,33 @@
 #include<iostream>
 
 using namespace std;
-int A[][2];
-int B[2][2];
 
-int multiplication_matrix(){
-
-    B[0][0] = A[0][0] * A[0][0] + A[0][1] * A[1][0];
-    B[0][1] = A[0][0] * A[0][1] + A[0][1] * A[1][1];
-    B[1][0] = A[1][0] * A[0][0] + A[1][1] * A[1][0];
-    B[1][1] = A[1][0] * A[0][1] + A[1][1] * A[1][1];
-
-    return **B;
-}
-
-int fibo_matricial(int A[][2] ,  int _size){
-
-    if(_size == 1){
-        return **A;
+unsigned long long fibo_matricial(unsigned long long n){
+    unsigned long long h,i,j,k,aux;
+    h = 1; 
+    i = 1;
+    j = 0; 
+    k = 0;
+    while(n>0){
+        if(n%2 != 0){
+            aux = (h*j);
+            j = (h*i) + (j*k) + aux;
+            i = (i*k) + aux; 
+        }
+        aux = (h*h);
+        h = (2*h*k) + aux;
+        k = (k*k) + aux;
+        n = (n/2);
     }
-
-    else{
-        int max = fibo_matricial(A, _size/2)*fibo_matricial(A, _size/2);
-    }
-
+    return j;
 }
 
 int main(){
-    int _size = 10;
-    int mod = 2<<19;
-    int A[2][2] = {{0 ,1 },{1 , 1}};
-    
+    unsigned long long n = 2<<29;
+    unsigned long long mod = 2<<19;
+    for(int i=1; i<=n; i++){
+        cout<<"fibo( "<<i<<")"<<fibo_matricial(i)<<endl;
+        cout<<"modulo "<<fibo_matricial(i)%mod<<endl;
+    }
     return 0;
 }
