@@ -37,7 +37,7 @@ int main(){
         }
         promedio = float(promedio/200);
 
-        salida << size_ << "\t" << promedio << "\t" << log(size_) << endl;
+        salida << size_ << "\t" << promedio << "\t" << 1+log(size_) << endl;
     }
     return 0;
 
